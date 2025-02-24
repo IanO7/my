@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Dashboard</title>
+    <link rel="stylesheet" href="styles_light.css">
+    <!-- Include Font Awesome for weather and sunrise/sunset icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Emergency Alert Section -->
+        <div class="emergency-alert">
+            <h2>Emergency Alert 🚨</h2>
+            <p id="alert-text">No current emergencies</p>
+        </div>
+
+
+        <!-- Weather Information Section -->
+        <!-- Set as "Loading..." then JS will update -->
+        <div class="weather-card">
+            <div class="weather-info">
+                <h3>☀️</h3>
+                <h3>Loading...</h3>
+                <p>Loading...</p>
+            </div>
+            <!-- Precipitation-->
+            <div class="weather-info">
+                <h3>🌧️</h3>
+                <h3>Precipitation</h3>
+                <p id = "precipitation">Loading...</p>
+            </div>
+            <!-- Humidity -->
+            <div class="weather-info">
+                <h3>💧</h3>
+                <h3>Humidity</h3>
+                <p id = "humidity">Loading...</p>
+            </div>
+        </div>
+
+        <!-- Date and Time Section -->
+        <div class="date-time">
+            <div id="current-time">
+                <p id="time"></p>
+            </div>
+            <div id="current-date">
+                <p id="date"></p>
+            </div>
+        </div>
+
+        <!-- Sunrise and Sunset Section -->
+        <!-- Set as "Loading..." then JS will update -->
+        <div class="sun-times">
+            <div class="sun-icon">
+                <p>Sunrise: <span id="sunrise">Loading...</span></p>
+            </div>
+            <div class="sun-icon">
+                <p>Sunset: <span id="sunset">Loading...</span></p>
+            </div>  
+        </div>
+
+
+        <!-- Air Quality Index Section -->
+        <div class="air-quality">
+            <h2>Air Quality</h2>
+            <div class="aqi-card">
+                <!-- Sleek AQI Progress Bar -->
+                <div class="aqi-bar">
+                    <div class="aqi-progress" id="aqi-progress"></div>
+                </div>
+                <p id="aqi-status">Loading AQI...</p>
+            </div>
+        </div>   
+
+        <!-- Blank Card 1 (Placeholder for later content) -->
+        <div class="plane-tracker">
+            <i class="fa-solid fa-plane"></i><span> Planes Near Me</span>
+            <div class="aqi-card">
+                <div id="top-flights">
+                    <!-- Top 3 flights will be dynamically added here based on flight-tracker.JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Blank Card 2 (Placeholder for later content) -->
+        <div class="air-quality">
+            <h2>*TENTATIVE VOICE INTEGRATION??</h2>
+            <div class="aqi-card">
+                <!-- Content for extra card 2 will be added later -->
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Link to switch to Dark Mode -->
+    <div class="button-container">
+        <a href="dashboard_dark.html">
+            <button class="wide-button">Switch to Dark Mode</button>
+        </a>
+    </div>
+
+    <!-- SOS Section -->
+    <div class="sos-alert">
+        <h2 id="sos-message"></h2>
+    </div>
+
+    <!-- Add SOS and End buttons -->
+    <div class="button-container">
+        <button id="sos-button">SOS</button>
+        <button id="end-button" style="display: none;">End</button>
+    </div>  
+
+    <script>
+        // Function to update date and time
+        function updateDateTime() {
+            const timeElement = document.getElementById('time');
+            const dateElement = document.getElementById('date');
+
+            const now = new Date();
+            
+            // Format time as: HH:MM AM/PM
+            const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
+            const formattedTime = now.toLocaleTimeString('en-US', timeOptions);
+            timeElement.textContent = formattedTime;
+
+            // Format date as: Day, Month Date (e.g., Thu, Dec 23)
+            const dateOptions = { weekday: 'short', month: 'short', day: 'numeric' };
+            const formattedDate = now.toLocaleDateString('en-US', dateOptions);
+            dateElement.textContent = formattedDate;
+        }
+
+        // Update date and time every second
+        setInterval(updateDateTime, 1000);
+
+        // Call function initially to set time/date when the page loads
+        updateDateTime();
+    </script>
+
+    <script src = "weather.js"></script>
+    <script src = "aqi.js"></script>
+    <script src = "flight-tracker.js"></script>
+    <script src = "emergency.js"></script>
+    <script src = "location.js"></script>
+    <script src = "sos.js"></script>
+
+    <!-- Empty element that acts as overlay, if activated then it will be styled as in CSS, else always off -->
+    <div id="overlay"></div>
+    <!-- SOS message -->
+    <div id="sos-message"></div>
+
+</body>
+</html>

@@ -1,0 +1,574 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #f1f1f1; /* Light text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    padding: 20px;
+    background-color: #1f1f1f; /* Dark background */
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 1200px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #f1f1f1; /* Light text color */
+}
+
+h3 {
+    font-size: 1.2em;
+    color: #ddd; /* Lighter grey */
+}
+
+p {
+    font-size: 1em;
+    color: #f1f1f1; /* Light text color */
+}
+
+.weather, .air-quality, .sun-times, .date-time, .plane-tracker {
+    background-color: #333; /* Darker background for cards */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Sunrise and Sunset Section */
+.sun-times {
+    display: flex; /* Align items in a row */
+    justify-content: space-evenly; /* Evenly spread items within the container */
+    align-items: center; /* Vertically center the items */
+    width: 100%; /* Ensure it takes up the full width of the card */
+    font-family: 'Roboto', sans-serif; /* Clean and modern font */
+    color: #ccc; /* Lighter text color for better contrast in dark mode */
+}
+
+/* Style for the individual sun-time items */
+.sun-icon p {
+    margin: 0; /* Remove default margin to keep it clean */
+    font-size: 1.6rem; /* Larger font size for better visibility */
+    font-weight: 600; /* Bold text for emphasis */
+    display: flex;
+    align-items: center; /* Align text horizontally */
+    width: 100%; /* Make the text boxes take up the full width */
+    padding: 20px; /* Larger padding to make it look bigger */
+    background-color: #333; /* Dark background for dark mode */
+    border-radius: 12px; /* Rounded corners for a smoother look */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Larger shadow for depth */
+    text-align: center; /* Center the text */
+    margin: 10px; /* Add space between the two elements */
+}
+
+/* Style for the time span element to create space between label and time */
+.sun-icon span {
+    font-size: 1.8rem; /* Make the time larger for better readability */
+    color: #FF5722; /* Warm orange color for the time */
+    margin-left: 8px; /* Add space between the label and the time */
+}
+
+
+/* Dark mode background for the overall card/container */
+.card {
+    background-color: #222; /* Dark background for the card */
+    color: #fff; /* Lighter text color for readability */
+}
+
+/* Dark Mode Weather Card Styling */
+.weather-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #333; /* Dark grey background */
+    border-radius: 8px;
+    width: 100%;
+}
+
+/* Individual Weather Information Blocks */
+.weather-info {
+    text-align: center;
+    width: 30%;
+}
+
+/* Icons for Weather Info */
+.weather-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Make icons uniform size for balance */
+.weather-icon i {
+    font-size: 3em;
+    color: #ffcc00; /* Yellow color for sunny icon */
+}
+
+/* Header for Weather Info */
+.weather-info h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    color: #f5f5f5; /* Light gray text for dark mode */
+}
+
+/* Paragraph for Weather Info */
+.weather-info p {
+    font-size: 1.2em;
+    color: #bbb; /* Slightly lighter gray text */
+    margin: 5px 0 0;
+}
+
+/* Emergency Alert Styling */
+.emergency-alert {
+    grid-column: span 2;
+    background-color: #3e1a1a; /* Dark red background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.emergency-alert h2 {
+    color: #ff6b6b; /* Light red for title */
+}
+
+#alert-text {
+    color: #f44336;
+    font-weight: bold;
+}
+
+/* AQI Progress Bar Styles for Dark Mode */
+.aqi-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #444; /* Darker grey background */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin: 15px 0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+.aqi-progress {
+    height: 100%;
+    width: 0; /* Default, dynamically updated */
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+
+/* AQI Status Text */
+#aqi-status {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #f1f1f1; /* Light text color */
+}
+
+/* Date & Time Styling */
+.date-time {
+    text-align: center;
+}
+
+#current-time p {
+    font-size: 2em;
+    color: #f1f1f1; /* Light text color */
+    font-weight: bold;
+}
+
+#current-date p {
+    font-size: 1.2em;
+    color: #aaa; /* Light grey for date */
+}
+
+/* Button Styles */
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.wide-button {
+    background-color: #4caf50;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 15px 30px;
+    width: 100%;
+    max-width: 400px; /* Maximum width for the button */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.wide-button:hover {
+    background-color: #45a049;
+}
+
+/* Dark Mode Style for the Plane Tracker container */
+.plane-tracker {
+    padding: 20px;
+    background-color: #2d2d2d; /* Dark background color */
+    border-radius: 8px;
+    max-width: 1000px; /* Increased width of container */
+    margin: 0 auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* Dark mode icon color */
+.plane-tracker i {
+    font-size: 40px;
+    color: #00aaff; /* Bright blue for the icon */
+}
+
+/* Dark mode text color */
+.plane-tracker span {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 10px;
+    color: #ffffff; /* White text for better visibility */
+}
+
+/* Dark Mode for the container of flight cards */
+#top-flights {
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: space-between; /* Distribute the space evenly between cards */
+    gap: 20px; /* Add some space between cards */
+    flex-wrap: nowrap; /* Prevent wrapping, keep them in a single row */
+    margin-top: 20px;
+}
+
+/* Dark Mode for each flight card */
+.flight-card {
+    background-color: #3a3a3a; /* Darker background for the cards */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 280px; /* Set a fixed width for each card */
+    transition: transform 0.3s ease;
+    flex: 0 0 auto; /* Prevent flex-grow and flex-shrink, keep the card size fixed */
+}
+
+/* Hover effect for the dark mode cards */
+.flight-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Dark Mode card text */
+.flight-card h3 {
+    font-size: 22px;
+    color: #ffffff; /* White color for headings */
+    margin: 0;
+}
+
+/* Dark Mode description text color */
+.flight-card p {
+    font-size: 18px;
+    color: #bbbbbb; /* Light grey color for text */
+    margin: 5px 0;
+}
+
+/* Dark Mode flight number or distance emphasis */
+.flight-card strong {
+    color: #00aaff; /* Bright blue for emphasis */
+}
+
+/* Adjust gap between cards in dark mode */
+#top-flights {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Decrease the gap between the cards */
+    flex-wrap: nowrap;
+    margin-top: 20px;
+}
+
+/* Emergency SOS */
+/* Overlay for Emergency SOS */
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    background-color: red; /* Red overlay */
+    z-index: 1; /* Ensure it's below the message and button */
+    pointer-events: none; /* Allow clicking through the overlay */
+}
+
+/* SOS message */
+#sos-message {
+    position: absolute; /* Position it relative to the document */
+    top: 50%; /* Center it vertically */
+    left: 50%; /* Center it horizontally */
+    transform: translate(-50%, -50%); /* Adjust for perfect centering */
+    font-size: 2rem; /* Adjust text size */
+    color: white; /* White text on the red background */
+    z-index: 3; /* Ensure it is on top of both overlay and button */
+}
+
+/* SOS Button Styling */
+#sos-button {
+    background-color: #f44336; /* Red color for SOS button */
+    color: #fff;
+    font-size: 1.2em;
+    padding: 15px 30px;
+    width: 100%;
+    max-width: 400px; /* Maximum width for the button */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#sos-button:hover {
+    background-color: #e53935; /* Darker red on hover */
+}
+
+/* End Button Styling (same as SOS button initially hidden) */
+#end-button {
+    background-color: #f44336; /* Red color for End button */
+    color: #fff;
+    font-size: 1.2em;
+    padding: 15px 30px;
+    width: 100%;
+    max-width: 400px; /* Maximum width for the button */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 2; /* Ensure it's above the overlay */
+}
+
+#end-button:hover {
+    background-color: #e53935; /* Darker red on hover */
+}
+
+
+/*  LATEST */
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
+}
+
+/* Light Mode Styles */
+body.light-mode {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+body.light-mode .dashboard {
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .weather, 
+body.light-mode .air-quality, 
+body.light-mode .sun-times, 
+body.light-mode .date-time, 
+body.light-mode .plane-tracker {
+    background-color: #e5f2f7;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #181818;
+    color: #f1f1f1;
+}
+
+body.dark-mode .dashboard {
+    background-color: #2c2c2c;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .weather,
+body.dark-mode .air-quality,
+body.dark-mode .sun-times,
+body.dark-mode .date-time,
+body.dark-mode .plane-tracker {
+    background-color: #333;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* General Styling */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    padding: 20px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 1200px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+p {
+    font-size: 1em;
+}
+
+/* Responsive Adjustments */
+@media only screen and (max-width: 1024px) {
+    .dashboard {
+        grid-template-columns: 1fr; /* Stack items vertically on smaller screens */
+        width: 90%; /* Increase width to fit screen */
+    }
+    
+    .weather-card,
+    .plane-tracker {
+        flex-direction: column; /* Stack weather info and plane tracker vertically */
+        padding: 15px;
+    }
+
+    .wide-button {
+        width: 100%; /* Ensure the button fits the screen */
+    }
+
+    #top-flights {
+        flex-direction: column; /* Stack the flight cards vertically */
+    }
+
+    .flight-card {
+        width: 100%; /* Make the flight cards take full width */
+    }
+}
+
+/* iPad Specific (1024x1366px) */
+@media only screen and (max-width: 1024px) and (max-height: 1366px) {
+    .dashboard {
+        grid-template-columns: 1fr 1fr; /* Keep the grid layout, but adjust for screen size */
+    }
+
+    .weather-card {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .weather-info {
+        width: 100%;
+    }
+
+    .wide-button {
+        width: 100%;
+    }
+
+    .sun-times {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .sun-icon p {
+        font-size: 1.4rem; /* Slightly smaller sun-time icons */
+        padding: 15px;
+    }
+
+    #top-flights {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .flight-card {
+        width: 100%;
+    }
+}
+
+/* Emergency SOS Overlay */
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    background-color: red; /* Red overlay */
+    z-index: 1; /* Ensure it's below the message and button */
+    pointer-events: none; /* Allow clicking through the overlay */
+}
+
+/* SOS message */
+#sos-message {
+    position: absolute; /* Position it relative to the document */
+    top: 50%; /* Center it vertically */
+    left: 50%; /* Center it horizontally */
+    transform: translate(-50%, -50%); /* Adjust for perfect centering */
+    font-size: 2rem; /* Adjust text size */
+    color: white; /* White text on the red background */
+    z-index: 3; /* Ensure it is on top of both overlay and button */
+}
+
+/* SOS Button Styling */
+#sos-button {
+    background-color: #f44336; /* Red color for SOS button */
+    color: #fff;
+    font-size: 1.2em;
+    padding: 15px 30px;
+    width: 100%;
+    max-width: 400px; /* Maximum width for the button */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#sos-button:hover {
+    background-color: #e53935; /* Darker red on hover */
+}
+
+/* End Button Styling (same as SOS button initially hidden) */
+#end-button {
+    background-color: #f44336; /* Red color for End button */
+    color: #fff;    
+    font-size: 1.2em;
+    padding: 15px 30px;
+    width: 100%;
+    max-width: 400px; /* Maximum width for the button */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 2; /* Ensure it's above the overlay */
+}
+
+#end-button:hover {
+    background-color: #e53935; /* Darker red on hover */
+}
